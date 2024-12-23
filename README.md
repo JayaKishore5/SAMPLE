@@ -112,21 +112,4 @@ Manages transactional workflows and data integrity.
 - Handle multi-step transactional processes.
 - Ensure consistency and conflict resolution during operations.
 
----
-
-## Contribution Guidelines
-To contribute to this project:
-1. Clone the repository and create a new feature branch.
-2. Develop your feature with appropriate testing.
-3. Submit a pull request for review.
-
----
-
-## License
-This project is licensed under the [MIT License](LICENSE).
-
----
-
-## Contact
-For queries, suggestions, or assistance, please contact the maintainers at [support@example.com](mailto:support@example.com).
 
