@@ -267,6 +267,38 @@ Handles transactional data operations.
     "status": "Completed"
   }
   ```
+## Service Layer and Implementations
+The service layer forms the backbone of the application’s business logic, connecting controllers to repositories and ensuring proper handling of data.
+
+### GeneralParamsServiceImpl
+Implements logic for managing global configurations.
+- Fetch and update global parameters.
+- Validate application-wide settings.
+
+### LoginServiceImpl
+Implements user authentication and registration logic.
+- Securely validate user credentials.
+- Register new users and encode passwords.
+
+### MasterServiceImpl
+Handles CRUD operations for master data entries.
+- Fetch all master records or specific entries.
+- Add, update, or delete master data.
+
+### ProcessServiceImpl
+Coordinates process-related workflows.
+- Initiate and track workflows.
+- Validate workflow transitions and completion.
+
+### TestServiceImpl
+Provides utilities for debugging during development.
+- Simulate API workflows.
+- Validate configurations and application readiness.
+
+### TransactionsServiceImpl
+Manages transactional workflows and data integrity.
+- Handle multi-step transactional processes.
+- Ensure consistency and conflict resolution during operations.
 
 ---
 
