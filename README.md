@@ -1,8 +1,4 @@
-# Comprehensive API Documentation
 
-This document consolidates the API details of all controllers in the application, providing a unified reference for all endpoints.
-
----
 
 # Master Controller
 
