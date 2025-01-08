@@ -1,353 +1,256 @@
+# Rites Backend Master
 
+## Overview
+Rites Backend Master is a backend application meticulously crafted to streamline operations in calibration processes, dashboards, SMS notifications, welding workflows, and other critical tasks. Designed with scalability, security, and maintainability as top priorities, this robust backend ensures seamless integration and efficient operations across diverse industrial requirements.
 
-# Master Controller
-
-## **POST Endpoints**
-
-### **1. POST /master/validateDuplicateItemName**
-Validates if an item name already exists in the database to prevent duplication.
-
-### **2. POST /master/updateVendorMaster**
-Updates the details of an existing vendor in the system.
-
-### **3. POST /master/updateUserMaster**
-Modifies user information such as roles or personal details.
-
-### **4. POST /master/updateUOMMaster**
-Updates details of a Unit of Measure (UOM).
-
-### **5. POST /master/updateOrgMaster**
-Edits organization-level details such as hierarchy or metadata.
-
-### **6. POST /master/updateLocatorMaster**
-Updates locator-specific details for inventory locations.
-
-### **7. POST /master/updateLocationMaster**
-Edits information related to specific inventory locations.
-
-### **8. POST /master/updateItemMaster**
-Updates metadata or details for items in the inventory.
-
-### **9. POST /master/updateEmpMaster**
-Edits employee details such as ID, name, or role.
-
-### **10. POST /master/updateDeptMaster**
-Updates departmental information within the system.
-
-### **11. POST /master/saveVendorMaster**
-Adds a new vendor to the database.
-
-### **12. POST /master/saveUserMaster**
-Creates a new user with associated roles and permissions.
-
-### **13. POST /master/saveUOMMaster**
-Saves a new Unit of Measure (UOM).
-
-### **14. POST /master/saveOrgMaster**
-Creates a new organization entry in the system.
-
-### **15. POST /master/saveLocatorMaster**
-Adds a new locator for inventory tracking.
-
-### **16. POST /master/saveLocationMaster**
-Creates a new location entry for inventory purposes.
-
-### **17. POST /master/saveItemMaster**
-Adds a new item to the inventory with detailed metadata.
-
-### **18. POST /master/saveEmpMaster**
-Saves a new employee record into the system.
-
-### **19. POST /master/saveDeptMaster**
-Creates a new department entry.
-
-### **20. POST /master/getVendorMasterById**
-Fetches vendor details based on their ID.
-
-### **21. POST /master/getUserMasterById**
-Retrieves user information by user ID.
-
-### **22. POST /master/getUOMMasterById**
-Gets details of a Unit of Measure by its ID.
-
-### **23. POST /master/getOrgMasterByParentId**
-Fetches organization details using its parent organization's ID.
-
-### **24. POST /master/getOrgMasterById**
-Retrieves details of an organization by its ID.
-
-### **25. POST /master/getOHQ**
-Fetches on-hand quantity details for items.
-
-### **26. POST /master/getLocatorMasterByOrgId**
-Gets locator details associated with a specific organization ID.
-
-### **27. POST /master/getLocatorMasterById**
-Fetches locator details by its ID.
-
-### **28. POST /master/getLocationMasterByOrgId**
-Retrieves location information linked to an organization ID.
-
-### **29. POST /master/getLocationMasterById**
-Fetches location details by its ID.
-
-### **30. POST /master/getItemMasterByOrgId**
-Gets items associated with a specific organization ID.
-
-### **31. POST /master/getItemMasterByItemCode**
-Retrieves item details by their unique item code.
-
-### **32. POST /master/getItemMasterById**
-Fetches item information by its ID.
-
-### **33. POST /master/getEmpMasterById**
-Retrieves employee details using their ID.
-
-### **34. POST /master/getDeptMasterById**
-Fetches department details by their ID.
-
-### **35. POST /master/getAllOHQ**
-Retrieves the on-hand quantity for all items in the inventory.
-
-### **36. POST /master/deleteVendorMaster**
-Removes a vendor record from the database.
-
-### **37. POST /master/deleteUserMaster**
-Deletes a user from the system.
-
-### **38. POST /master/deleteUOMMaster**
-Removes a Unit of Measure record.
-
-### **39. POST /master/deleteOrgMaster**
-Deletes an organization entry from the system.
-
-### **40. POST /master/deleteLocatorMaster**
-Deletes a locator entry from the inventory database.
-
-### **41. POST /master/deleteLocationMaster**
-Removes a location record.
-
-### **42. POST /master/deleteItemMaster**
-Deletes an item from the inventory.
-
-### **43. POST /master/deleteEmpMaster**
-Removes an employee record.
-
-### **44. POST /master/deleteDeptMaster**
-Deletes a department entry from the system.
-
-### **45. POST /master/changePassword**
-Updates a user's password securely.
-
-## **GET Endpoints**
-
-### **1. GET /master/getVendorMaster**
-Retrieves all vendors in the system.
-
-### **2. GET /master/getUserMaster**
-Fetches a list of all users in the system.
-
-### **3. GET /master/getUOMMaster**
-Gets all Unit of Measure records.
-
-### **4. GET /master/getParentOrgMaster**
-Retrieves details of parent organizations.
-
-### **5. GET /master/getOrgMaster**
-Fetches a list of all organizations.
-
-### **6. GET /master/getLocatorMaster**
-Gets details of all locators in the inventory.
-
-### **7. GET /master/getLocationMaster**
-Retrieves a list of all inventory locations.
-
-### **8. GET /master/getItemMaster**
-Fetches all items in the inventory.
-
-### **9. GET /master/getEmpMaster**
-Retrieves a list of all employees.
-
-### **10. GET /master/getDeptMaster**
-Fetches a list of all departments.
+### Key Highlights
+- **Security**: Implements JWT-based authentication and authorization to secure user sessions and data access.
+- **Modular Design**: APIs are segregated by domain controllers, each handling specific operations to maintain clarity and scalability.
+- **Ease of Configuration**: The application uses a flexible configuration system based on `application.properties`, making it adaptable to various environments.
+- **Enhanced Documentation**: Swagger integration provides clear, interactive API documentation for developers.
 
 ---
 
-# Login Controller
+## Technologies Used
 
-## **POST Endpoints**
+The Rites Backend Master leverages cutting-edge technologies to deliver performance and reliability:
 
-### **1. POST /auth/login**
-Authenticates a user and generates a JWT token for access.
-
----
-
-# General Parameters Controller
-
-## **POST Endpoints**
-
-### **1. POST /genparam/saveUsageCategories**
-Saves usage category details into the database.
-
-### **2. POST /genparam/saveSubCategories**
-Adds a new subcategory for items or inventory classification.
-
-### **3. POST /genparam/saveSize**
-Stores size-related metadata for items.
-
-### **4. POST /genparam/saveItemType**
-Saves a new item type for categorization purposes.
-
-### **5. POST /genparam/saveItemName**
-Adds a new item name to the system.
-
-### **6. POST /genparam/saveDiscipline**
-Stores discipline-specific metadata for categorization.
-
-### **7. POST /genparam/saveColor**
-Adds color information to the system for item tracking.
-
-### **8. POST /genparam/saveCategories**
-Saves category information for item organization.
-
-### **9. POST /genparam/saveBrand**
-Adds brand details to the inventory metadata.
-
-### **10. POST /genparam/getAllSubCategoriesByDtls**
-Retrieves all subcategories based on specific details.
-
-### **11. POST /genparam/getAllItemTypeByDtls**
-Fetches item types matching specific details.
-
-### **12. POST /genparam/getAllItemNamesByDtls**
-Retrieves item names based on specific criteria.
-
-### **13. POST /genparam/getAllDisciplineByDtls**
-Fetches disciplines based on specific metadata.
-
-## **GET Endpoints**
-
-### **1. GET /genparam/getAllUserType**
-Retrieves all user types for categorization.
-
-### **2. GET /genparam/getAllUsageCategories**
-Fetches all usage categories in the system.
-
-### **3. GET /genparam/getAllSubCategories**
-Retrieves all subcategories.
-
-### **4. GET /genparam/getAllSizes**
-Gets all item sizes stored in the system.
-
-### **5. GET /genparam/getAllItemType**
-Retrieves all item types.
-
-### **6. GET /genparam/getAllItemNames**
-Fetches all item names.
-
-### **7. GET /genparam/getAllDiscipline**
-Retrieves all disciplines for categorization.
-
-### **8. GET /genparam/getAllColors**
-Fetches all colors available for item classification.
-
-### **9. GET /genparam/getAllCategories**
-Retrieves all item categories.
-
-### **10. GET /genparam/getAllBrands**
-Fetches all brand-related metadata.
+- **Java**: A versatile and widely-used programming language for developing enterprise-grade applications.
+- **Spring Boot**: A framework that accelerates application development while ensuring modularity and scalability.
+- **Maven**: Manages dependencies and builds processes, simplifying project management.
+- **JWT**: Provides secure token-based authentication to ensure data integrity and confidentiality.
+- **PostgreSQL**: A powerful relational database system for consistent and efficient data management.
+- **Swagger**: Offers user-friendly, interactive API documentation for easier integration and testing.
 
 ---
 
-# Dashboard Controller
+## Features
 
-## **POST Endpoints**
+### 1. Authentication and Authorization
+The application prioritizes security with JWT-based token authentication, which ensures that only authorized users have access to specific resources. Passwords are encrypted to prevent unauthorized access, making the system highly secure.
 
-### **1. POST /getTotalValueOfAllItem**
-Calculates and returns the total value of all items in the inventory. Aggregates the value of items based on their quantity and price.
+### 2. Calibration Management
+Provides tools to create, update, delete, and retrieve calibration data. This ensures that critical calibration processes are documented and accessible at any time.
 
-### **2. POST /getPurchaseSummary**
-Provides a summary of all purchase transactions, including total purchase amounts and item details.
+### 3. Dashboard Analytics
+Offers real-time insights into operational metrics by aggregating data from multiple sources, empowering stakeholders with actionable analytics.
 
-### **3. POST /getFNSCategory**
-Fetches and categorizes items based on the "FNS" category for specific reporting.
+### 4. Dynamic Configuration
+Users can manage application-wide settings dynamically through dedicated APIs, providing flexibility to adapt to evolving requirements.
 
-### **4. POST /getDashboardIssueNoteData**
-Retrieves issue note data for the dashboard, providing insights into issued items and quantities.
-
----
-
-# Test Controller
-
-## **GET Endpoints**
-
-### **1. GET /test**
-Checks the status of the application, ensuring the server is running and operational.
-
-### **2. GET /itemCodeCount**
-Retrieves the count of item codes in the system for monitoring inventory data.
+### 5. Workflow Management
+Supports specialized workflows for welding, non-destructive testing (NDT), and visual inspections (VI), each tailored to ensure compliance and accuracy.
 
 ---
 
-# Process Controller
+## Application Configuration
 
-## **POST Endpoints**
+The configuration of this application is managed via the `application.properties` file. This approach ensures flexibility and simplicity for system administrators.
 
-### **1. POST /saveReturnNote**
-Saves a return note detailing returned items and reasons.
+### **Database Configuration**
+```properties
+spring.datasource.url=jdbc:postgresql://localhost:5432/rites_backend
+spring.datasource.username=postgres
+spring.datasource.password=yourpassword
+spring.datasource.driver-class-name=org.postgresql.Driver
+```
+- **JDBC URL**: Connects the application to the PostgreSQL database.
+- **Credentials**: Secures access with username and password.
+- **Driver**: Specifies the database driver required for interaction.
 
-### **2. POST /saveRejectionNote**
-Captures information about rejected items, including reasons and quantities.
+### **Server Configuration**
+```properties
+server.port=8080
+```
+Defines the port on which the application runs, making it accessible to clients.
 
-### **3. POST /saveOutwardGatePass**
-Records details of items leaving the facility, including destination and purpose.
+### **JWT Configuration**
+```properties
+jwt.secretkey=your_jwt_secret_key
+jwt.token.validity=86400000
+```
+- **Secret Key**: Ensures secure token generation and validation.
+- **Validity Period**: Configures token lifespan to enhance security without frequent reauthentication.
 
-### **4. POST /saveNewInspectionReport**
-Captures details of new inspections performed on items or batches.
+### **JPA Configuration**
+```properties
+spring.jpa.hibernate.ddl-auto=update
+```
+Optimizes database schema management by allowing Hibernate to update schemas as required.
 
-### **5. POST /saveIssueNote**
-Records details of items issued from inventory.
+### **Swagger Configuration**
+```properties
+springdoc.swagger-ui.path=/swagger-ui.html
+```
+Provides the URL path to the Swagger UI for interactive API documentation.
 
-### **6. POST /saveInwardGatePass**
-Documents items entering the facility, including sources and verification details.
+---
 
-### **7. POST /saveInspectionReport**
-Captures details of periodic or specific inspections.
+## POM.xml Explanation
 
-### **8. POST /saveGRN**
-Records goods received, including quantities, condition, and source.
+The `pom.xml` file in this project manages dependencies, plugins, and build configurations essential for its functioning.
 
-### **9. POST /saveAcceptanceNote**
-Documents items accepted after inspection or verification.
+### Key Dependencies
 
-### **10. POST /getSubProcessDtls**
-Retrieves details of subprocesses associated with a workflow.
+1. **Spring Boot Starter**: Enables core Spring Boot functionality.
+2. **Spring Boot Starter Web**: Facilitates RESTful web service development.
+3. **Spring Boot Starter Data JPA**: Integrates database interaction using JPA and Hibernate.
+4. **PostgreSQL Driver**: Ensures seamless interaction with the PostgreSQL database.
+5. **Spring Security**: Implements robust security for user authentication and resource access.
+6. **JWT (Json Web Token)**: Supports token-based user authentication.
+7. **Swagger Documentation**: Provides clear, interactive documentation for the APIs.
 
-### **11. POST /doCorrectionProcess**
-Initiates corrections in existing processes.
+### Plugins
 
-## **GET Endpoints**
-
-### **1. GET /getAllProcess**
-Retrieves a list of all processes in the system.
+1. **Spring Boot Maven Plugin**: Simplifies the process of packaging and running the Spring Boot application.
 
 ---
 
-# Transactions Controller
+## Controllers
 
-## **POST Endpoints**
+### AuthController
+Manages user authentication and registration operations. It provides APIs for users to securely log in and register their accounts. The controller ensures token-based authentication using JWT.
 
-### **1. POST /txns/getTxnSummary**
-Provides a summary of transactions for a specific organization or time frame.
+- **POST /register**: Registers a new user in the system.
+- **POST /login**: Authenticates a user and issues a JWT token for secure access.
 
-### **2. POST /txns/getTxnSummaryForAllOrg**
-Generates a summary of transactions across all organizations.
+### CalibrationController
+Handles calibration-related operations. The controller is responsible for managing calibration data, ensuring accurate and consistent records, and providing real-time tracking of calibration duties.
 
-### **3. POST /txns/getTxnDtls**
-Fetches detailed information about a specific transaction.
+- **POST /calibration/startDuty**: Starts a new calibration duty, initializing required parameters.
+- **POST /calibration/saveCalibration**: Saves single calibration data entries.
+- **POST /calibration/saveBulkCalibration**: Processes and saves multiple calibration entries in bulk.
+- **POST /calibration/endDuty**: Ends the ongoing calibration duty shift.
+- **GET /calibration/getOngoingDutyDtls**: Retrieves details of ongoing calibration duties.
+- **GET /calibration/getCalibrationDtls**: Fetches specific calibration data.
+- **GET /calibration/getAllLatestCalibrations**: Lists all recent calibration entries.
+- **GET /calibration/checkDutyStatus**: Checks the current duty status for calibration.
 
-### **4. POST /txns/getStockLedger**
-Retrieves historical data of stock movements for inventory tracking.
+### DashboardController
+Provides data insights and analytics for dashboards. This controller consolidates inspection data and operational metrics for visualization and performance tracking.
+
+- **POST /dashboard/getSurfaceInspectionDtls**: Retrieves surface inspection details.
+- **POST /dashboard/getDimensionalInspectionDtls**: Fetches dimensional inspection details.
+- **GET /dashboard/getSurfaceInspectionDtlByRailId**: Fetches surface inspection details by Rail ID.
+- **GET /dashboard/getDimensionalInspectionDtlByRailId**: Fetches dimensional inspection details by Rail ID.
+
+### NdtController
+Oversees non-destructive testing (NDT) processes. This controller provides functionalities for managing shift summaries, reports, and calibration details for NDT operations.
+
+- **POST /ndt/startDuty**: Starts a new NDT duty shift.
+- **POST /ndt/saveShiftSummary**: Saves shift summary details for an NDT duty.
+- **POST /ndt/getReport**: Generates a comprehensive report of NDT operations.
+- **POST /ndt/endDuty**: Ends the ongoing NDT duty shift.
+- **POST /ndt/calibration/saveBulkCalibration**: Processes and saves bulk calibration data for NDT.
+- **GET /ndt/getOngoingDutyDtls**: Retrieves details of ongoing NDT duties.
+- **GET /ndt/checkDutyProgress**: Checks the progress of an active NDT duty.
+- **GET /ndt/calibration/getCalibrationDtls**: Fetches calibration details related to NDT.
+
+### SmsController
+Manages SMS notifications and operational data for steel melting shop (SMS) processes. The controller tracks shift summaries, heat details, and duty statuses.
+
+- **POST /sms/updateHeatDtls**: Updates heat details for ongoing processes.
+- **POST /sms/startDuty**: Starts a new SMS duty.
+- **POST /sms/saveShiftSummaryDtls**: Saves summary details of an SMS shift.
+- **POST /sms/saveBloomInsp**: Records inspection details for blooms.
+- **POST /sms/getSmsSummary**: Retrieves an overall summary of SMS operations.
+- **POST /sms/getHeatSummary**: Fetches summaries related to heat processes.
+- **POST /sms/endDuty**: Ends the ongoing SMS duty shift.
+- **POST /sms/addNewHeat**: Adds new heat details to the system.
+- **GET /sms/getShiftSummaryDtls**: Fetches shift summary details for SMS.
+- **GET /sms/getOngoingDutyDtls**: Retrieves details of ongoing SMS duties.
+- **GET /sms/getHeatDtls**: Fetches specific heat details.
+- **GET /sms/getBloomDtls**: Retrieves details for blooms under inspection.
+- **GET /sms/checkDutyStatus**: Checks the current status of SMS duties.
+
+### RollingController
+Oversees rolling operations, managing test samples, batch sequences, and verification processes. This controller ensures quality assurance and accurate data tracking for rolling operations.
+
+- **POST /rolling/testing/saveRailDtls**: Saves details of rails under testing.
+- **POST /rolling/startDuty**: Starts a new rolling duty.
+- **POST /rolling/saveRollingVerification**: Records verification details for rolling processes.
+- **POST /rolling/saveControlHeat**: Saves heat control data.
+- **POST /rolling/saveControlDtls**: Records details of control processes.
+- **POST /rolling/saveAcceptanceTestSample**: Saves details of test samples for acceptance testing.
+- **POST /rolling/htSequence/saveBatch**: Saves batch details for heat treatment sequences.
+- **POST /rolling/getHeatAcptTestDtls**: Fetches details of heat acceptance tests.
+- **POST /rolling/getControlSampleDtls**: Retrieves control sample details.
+- **POST /rolling/finishingVerification/save**: Saves finishing verification details.
+- **POST /rolling/endDuty**: Ends the ongoing rolling duty.
+- **GET /rolling/htSequence/getRailIdMarkedTests**: Fetches marked tests for Rail IDs in heat sequences.
+- **GET /rolling/htSequence/getOpenBatchDtls**: Retrieves details of open batches in heat sequences.
+- **GET /rolling/getOngoingDutyDtls**: Retrieves details of ongoing rolling duties.
+- **GET /rolling/getControlDtls**: Fetches control process details.
+- **GET /rolling/checkDutyStatus**: Checks the current duty status for rolling operations.
+
+### WeldingController
+Oversees welding operations by managing workflow data and ensuring process compliance. Below are the available APIs:
+
+- **POST /welding/updateWeldInspection**: Updates details of a weld inspection, ensuring all necessary data modifications are saved.
+- **POST /welding/startDuty**: Starts a new welding duty shift, tracking the operator and shift details.
+- **POST /welding/saveWeldingTlt**: Saves Tilt (TLT) data related to welding operations.
+- **POST /welding/saveWeldingTestSample**: Records test sample details generated during the welding process.
+- **POST /welding/saveWeldingHardness**: Saves hardness test results for completed welds.
+- **POST /welding/saveWeldInspection**: Stores results of welding inspections.
+- **POST /welding/saveMicro**: Saves micro-level welding analysis data.
+- **POST /welding/saveMacro**: Records macro-level inspection details for welds.
+- **POST /welding/getWeldingSummaryReport**: Retrieves a summary report of welding operations.
+- **POST /welding/getTestSampleReport**: Fetches a report detailing test samples and their results.
+- **POST /welding/getNewWeldingReport**: Retrieves a comprehensive report of recent welding activities.
+- **POST /welding/endDuty**: Ends the ongoing welding duty shift and records relevant details.
+- **GET /welding/getWeldingDtl**: Fetches detailed information about specific welding tasks.
+- **GET /welding/getRefinishHoldingWeldingDtls**: Retrieves details of welding tasks in the refinish holding stage.
+- **GET /welding/getRecentTestSummary**: Provides a summary of recent welding test results.
+- **GET /welding/getPendingTestSampleDtl**: Fetches details of test samples pending analysis.
+- **GET /welding/getOngoingDutyDtls**: Retrieves details of currently active welding duty shifts.
+- **GET /welding/getMachineWiseTestCount**: Provides a count of tests conducted on a machine-by-machine basis.
+- **GET /welding/checkDutyStatus**: Checks the current status of welding duty shifts.
+
+### ViController
+Manages workflows and data related to visual inspections (VI). Below are the available APIs:
+
+- **POST /vi/startDuty**: Starts a new visual inspection duty, tracking operator and duty details.
+- **POST /vi/saveViDtls**: Saves details related to visual inspection tasks and results.
+- **POST /vi/getAcptRejReport**: Generates a report showing accepted and rejected items from inspections.
+- **POST /vi/getAcptDataReport**: Retrieves detailed data for accepted inspection items.
+- **POST /vi/endDuty**: Ends the ongoing visual inspection duty shift.
+- **GET /vi/getOngoingDutyDtls**: Fetches details of ongoing visual inspection duties.
+- **GET /vi/checkDutyStatus**: Checks the current status of visual inspection duty shifts.
 
 ---
+
+## Service Layer and Implementations
+
+The service layer acts as a bridge between the controllers and the data repositories, implementing business logic and ensuring data integrity. Below are the key services and their functions:
+
+### AuthServiceImpl
+- Validates user credentials during login.
+- Registers new users with encrypted passwords.
+- Generates JWT tokens for authenticated sessions.
+
+### CalibrationServiceImpl
+- Manages calibration data entries and updates.
+- Processes and validates bulk calibration requests.
+- Tracks ongoing calibration duties to provide real-time data.
+
+### DashboardServiceImpl
+- Aggregates and processes data for dashboard analytics.
+- Retrieves detailed surface and dimensional inspection reports.
+- Provides stakeholders with actionable insights for decision-making.
+
+### SmsServiceImpl
+- Oversees operations for the steel melting shop (SMS).
+- Tracks shift summaries, heat details, and inspection data.
+- Integrates with SMS gateways for seamless notifications.
+
+### WeldingServiceImpl
+- Handles workflows and data specific to welding processes.
+- Manages test results, inspections, and summary reports.
+- Ensures compliance with industry standards and documentation.
+
+### ViServiceImpl
+- Streamlines workflows for visual inspections.
+- Records and validates inspection results with precision.
+- Ensures data compliance and facilitates seamless reporting.
+
 
