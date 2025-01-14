@@ -19,7 +19,7 @@ The Rites Backend Master leverages cutting-edge technologies to deliver performa
 - **Spring Boot**: A framework that accelerates application development while ensuring modularity and scalability.
 - **Maven**: Manages dependencies and builds processes, simplifying project management.
 - **JWT**: Provides secure token-based authentication to ensure data integrity and confidentiality.
-- **PostgreSQL**: A powerful relational database system for consistent and efficient data management.
+- **MySQL**: Relational database management system for data persistence.
 - **Swagger**: Offers user-friendly, interactive API documentation for easier integration and testing.
 
 ---
@@ -45,46 +45,70 @@ Supports specialized workflows for welding, non-destructive testing (NDT), and v
 
 ## Application Configuration
 
-The configuration of this application is managed via the `application.properties` file. This approach ensures flexibility and simplicity for system administrators.
-
-### **Database Configuration**
-```properties
-spring.datasource.url=jdbc:postgresql://localhost:5432/rites_backend
-spring.datasource.username=postgres
-spring.datasource.password=yourpassword
-spring.datasource.driver-class-name=org.postgresql.Driver
-```
-- **JDBC URL**: Connects the application to the PostgreSQL database.
-- **Credentials**: Secures access with username and password.
-- **Driver**: Specifies the database driver required for interaction.
+The configuration of this application is managed via the `application.properties` file. This ensures flexibility and ease of management for system administrators and developers.
 
 ### **Server Configuration**
 ```properties
 server.port=8080
+spring.application.name=ritesbackend
 ```
-Defines the port on which the application runs, making it accessible to clients.
+- **Server Port**: Defines the port on which the application will run.
+- **Application Name**: Specifies the name of the application for internal identification.
+
+### **Database Configuration**
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/rites?useSSL=false&serverTimezone=UTC
+spring.datasource.username=root
+spring.datasource.password=root123
+spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver
+```
+- **JDBC URL**: Connects the application to the MySQL database with SSL disabled and a specified timezone.
+- **Username and Password**: Secures access with database credentials.
+- **Driver Class Name**: Specifies the driver required to interact with the MySQL database.
+
+### **Hibernate Configuration**
+```properties
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+spring.jpa.properties.hibernate.format_sql=true
+spring.mvc.pathmatch.matching-strategy=ANT_PATH_MATCHER
+```
+- **DDL Auto**: Prevents automatic schema changes to preserve existing database structure.
+- **Show SQL**: Enables visibility of SQL statements in logs.
+- **Dialect**: Specifies the MySQL dialect for Hibernate.
+- **Formatted SQL**: Outputs SQL statements in a readable format for debugging.
+- **Path Matching Strategy**: Configures the use of ANT path matching.
 
 ### **JWT Configuration**
 ```properties
-jwt.secretkey=your_jwt_secret_key
+jwt.secretkey=ayXsCyBIxrHSwAAYsVmUqbagCI937qC0/tpkL8vyx0q+1VT4YeD60PVIt6yOneoH
 jwt.token.validity=86400000
 ```
-- **Secret Key**: Ensures secure token generation and validation.
-- **Validity Period**: Configures token lifespan to enhance security without frequent reauthentication.
+- **Secret Key**: Used for signing JWT tokens, ensuring secure authentication.
+- **Token Validity**: Configures the JWT token's lifespan (in milliseconds, 24 hours).
 
-### **JPA Configuration**
+### **File Upload Configuration**
 ```properties
-spring.jpa.hibernate.ddl-auto=update
+spring.servlet.multipart.enabled=true
+spring.servlet.multipart.max-file-size=10MB
+spring.servlet.multipart.max-request-size=10MB
 ```
-Optimizes database schema management by allowing Hibernate to update schemas as required.
+- **File Uploads Enabled**: Activates multipart file handling.
+- **Max File Size**: Limits the size of an individual file upload to 10MB.
+- **Max Request Size**: Caps the total size of a multipart request to 10MB.
 
 ### **Swagger Configuration**
 ```properties
+springdoc.api-docs.path=/v3/api-docs
 springdoc.swagger-ui.path=/swagger-ui.html
+springdoc.api-docs.enabled=true
+springdoc.swagger-ui.enabled=true
 ```
-Provides the URL path to the Swagger UI for interactive API documentation.
-
----
+- **API Docs Path**: Configures the endpoint for accessing OpenAPI documentation.
+- **Swagger UI Path**: Defines the URL path for the Swagger UI.
+- **API Docs Enabled**: Ensures OpenAPI documentation is generated.
+- **Swagger UI Enabled**: Activates the Swagger UI for interactive API testing.
 
 ## POM.xml Explanation
 
@@ -95,14 +119,14 @@ The `pom.xml` file in this project manages dependencies, plugins, and build conf
 1. **Spring Boot Starter**: Enables core Spring Boot functionality.
 2. **Spring Boot Starter Web**: Facilitates RESTful web service development.
 3. **Spring Boot Starter Data JPA**: Integrates database interaction using JPA and Hibernate.
-4. **PostgreSQL Driver**: Ensures seamless interaction with the PostgreSQL database.
+4. **MySQL Driver**: Relational database management system for data persistence.
 5. **Spring Security**: Implements robust security for user authentication and resource access.
 6. **JWT (Json Web Token)**: Supports token-based user authentication.
 7. **Swagger Documentation**: Provides clear, interactive documentation for the APIs.
 
 ### Plugins
 
-1. **Spring Boot Maven Plugin**: Simplifies the process of packaging and running the Spring Boot application.
+**Spring Boot Maven Plugin**: Simplifies the process of packaging and running the Spring Boot application.
 
 ---
 
@@ -218,39 +242,5 @@ Manages workflows and data related to visual inspections (VI). Below are the ava
 - **GET /vi/checkDutyStatus**: Checks the current status of visual inspection duty shifts.
 
 ---
-
-## Service Layer and Implementations
-
-The service layer acts as a bridge between the controllers and the data repositories, implementing business logic and ensuring data integrity. Below are the key services and their functions:
-
-### AuthServiceImpl
-- Validates user credentials during login.
-- Registers new users with encrypted passwords.
-- Generates JWT tokens for authenticated sessions.
-
-### CalibrationServiceImpl
-- Manages calibration data entries and updates.
-- Processes and validates bulk calibration requests.
-- Tracks ongoing calibration duties to provide real-time data.
-
-### DashboardServiceImpl
-- Aggregates and processes data for dashboard analytics.
-- Retrieves detailed surface and dimensional inspection reports.
-- Provides stakeholders with actionable insights for decision-making.
-
-### SmsServiceImpl
-- Oversees operations for the steel melting shop (SMS).
-- Tracks shift summaries, heat details, and inspection data.
-- Integrates with SMS gateways for seamless notifications.
-
-### WeldingServiceImpl
-- Handles workflows and data specific to welding processes.
-- Manages test results, inspections, and summary reports.
-- Ensures compliance with industry standards and documentation.
-
-### ViServiceImpl
-- Streamlines workflows for visual inspections.
-- Records and validates inspection results with precision.
-- Ensures data compliance and facilitates seamless reporting.
 
 
